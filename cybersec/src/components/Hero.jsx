@@ -1,4 +1,4 @@
-const HeroSection = () =>{
+const HeroSection = ({toggle}) =>{
     return(
         <main className="hero container">
             <div className="hero-content">
@@ -8,7 +8,7 @@ const HeroSection = () =>{
                       close that gap by advancing cryptographic algorithms and implementing cutting-edge
                        security solutions to stay ahead of the bad actors.</p>
                        <div className="hero-btn">
-                <button>Launch Encryption</button>
+                <button onClick={toggle}>Launch Encryption</button>
                 <button>Algorithm 101</button>
             </div>
             </div>
