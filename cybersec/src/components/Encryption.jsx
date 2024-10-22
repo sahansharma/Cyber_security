@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import SearchResult from "./SearchResult";
 
-const BASE_URL = "http://localhost:9000/"; // Replace with the correct API endpoint
+export const BASE_URL = "http://localhost:9000/"; // Replace with the correct API endpoint
 
 const Encryption = () => {
     const [data, setData] = useState(null);
@@ -33,8 +33,6 @@ const Encryption = () => {
 
     return (
         <div>
-            <h1>Encryption</h1>
-            {data ? <pre>{JSON.stringify(data, null, 2)}</pre> : <p>No data available</p>}
             <SearchResult data={data}/>
         </div>
     );
