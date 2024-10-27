@@ -11,6 +11,38 @@ app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
 app.use((0, cors_1.default)());
 app.use("/images", express_1.default.static(path_1.default.join(__dirname, "../public/images")));
+
+const encryptionFormSchemas = {
+    caesarCipher: [
+        { label: "Plain Text", name: "plainText", type: "text", placeholder: "Enter text to encrypt" },
+        { label: "Shift Key", name: "shiftKey", type: "number", placeholder: "Enter shift (e.g., 3)", min: 1, max: 25 }
+    ],
+    playfairCipher: [
+        { label: "Plain Text", name: "plainText", type: "text", placeholder: "Enter text to encrypt" },
+        { label: "Keyword", name: "keyword", type: "text", placeholder: "Enter keyword (e.g., SECRET)" },
+        { label: "Remove Duplicate Letters", name: "removeDuplicates", type: "checkbox" }
+    ],
+    hillCipher: [
+        { label: "Plain Text", name: "plainText", type: "text", placeholder: "Enter text to encrypt" },
+        { label: "Matrix Size", name: "matrixSize", type: "number", placeholder: "Enter matrix size (e.g., 3)", min: 2 },
+        { label: "Matrix Key", name: "matrixKey", type: "text", placeholder: "Enter matrix key values (comma-separated)" }
+    ],
+    vigenereCipher: [
+        { label: "Plain Text", name: "plainText", type: "text", placeholder: "Enter text to encrypt" },
+        { label: "Keyword", name: "keyword", type: "text", placeholder: "Enter keyword (e.g., SECRET)" }
+    ],
+    desAlgorithm: [
+        { label: "Plain Text", name: "plainText", type: "text", placeholder: "Enter text to encrypt (multiple of 8 characters)" },
+        { label: "Key", name: "key", type: "text", placeholder: "Enter 56-bit key", minLength: 7, maxLength: 7 }
+    ],
+    rsaAlgorithm: [
+        { label: "Plain Text", name: "plainText", type: "text", placeholder: "Enter text to encrypt" },
+        { label: "Public Key (n)", name: "publicKeyN", type: "number", placeholder: "Enter modulus (n)" },
+        { label: "Public Key (e)", name: "publicKeyE", type: "number", placeholder: "Enter public exponent (e)" }
+    ]
+};
+
+
 app.get("/", (req, res) => {
     console.log(path_1.default.join(__dirname, "../public"));
     const EncryptionData = [
@@ -114,6 +146,12 @@ app.get("/", (req, res) => {
     ;
     res.json(EncryptionData);
 });
+
+app.get("/encryption-form-schemas", (req, res) => {
+    res.json(encryptionFormSchemas);
+});
+
+
 app.listen(9000, () => {
     console.log("Server is running on port 9000");
 });

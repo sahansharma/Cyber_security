@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import SearchResult from "./SearchResult";
 
-export const BASE_URL = "http://localhost:9000/"; // Replace with the correct API endpoint
+export const BASE_URL = "http://localhost:9000/";
+export const FORM_DATA_URL = "http://localhost:9000/encryption-form-schemas"
 
 const Encryption = () => {
     const [data, setData] = useState(null);
